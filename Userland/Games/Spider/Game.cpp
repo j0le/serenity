@@ -94,8 +94,8 @@ void Game::perform_undo()
     NonnullRefPtrVector<Card> cards;
     for (size_t i = 0; i < m_last_move.card_count; i++)
         cards.append(m_last_move.to->pop());
-    for (ssize_t i = m_last_move.card_count - 1; i >= 0; i--)
-        m_last_move.from->push(cards[i]);
+    for (size_t i = m_last_move.card_count; i > 0; i--)
+        m_last_move.from->push(cards[i-1]);
 
     update_score(-1);
 
@@ -145,7 +145,7 @@ void Game::detect_full_stacks()
         uint8_t last_value;
         Color color;
         for (size_t i = current_pile.stack().size(); i > 0; i--) {
-            auto& card = current_pile.stack().at(i - 1);
+            const auto& card = current_pile.stack().at(i - 1);
             if (card.is_upside_down())
                 break;
 
