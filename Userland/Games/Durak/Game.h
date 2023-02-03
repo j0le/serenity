@@ -13,8 +13,8 @@
 #include <LibCards/CardGame.h>
 #include <LibCards/CardStack.h>
 
-using Cards::Card;
-using Cards::CardStack;
+//using Cards::Card;
+//using Cards::CardStack;
 
 namespace Durak {
 
@@ -26,5 +26,11 @@ public:
 
 private:
     Game();
+
+    void paint_event(GUI::PaintEvent&) override;
+    void mousemove_event(GUI::MouseEvent& event) override;
+
+    Gfx::IntPoint m_mouse_position{0,0};
+    static constexpr const Gfx::IntPoint m_line_start_point{100,100};
 };
 }
