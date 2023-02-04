@@ -50,7 +50,7 @@ void Game::paint_event(GUI::PaintEvent& event)
     painter.draw_line(m_line_start_point, m_mouse_position, cyan);
 }
 
-void Game::mousemove_event(GUI::MouseEvent& event)
+void Game::mousedown_event(GUI::MouseEvent& event)
 {
     GUI::Frame::mousemove_event(event);
     m_mouse_position = event.position();
