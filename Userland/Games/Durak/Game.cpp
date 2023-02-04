@@ -55,14 +55,10 @@ void Game::mousedown_event(GUI::MouseEvent& event)
     GUI::Frame::mousemove_event(event);
     m_mouse_position = event.position();
 
-    int x = get_minimum(m_line_start_point.x(), m_mouse_position.x());
-    int y = get_minimum(m_line_start_point.y(), m_mouse_position.y());
-
-    int width = AK::abs(m_line_start_point.x()- m_mouse_position.x());
-    int hight = AK::abs(m_line_start_point.y()- m_mouse_position.y());
+    Gfx::IntRect rect = Gfx::IntRect::from_two_points(m_line_start_point, m_mouse_position);
 
 
-    update(Gfx::IntRect(x,y,width,hight));
+    update(rect);
 }
 
 }
