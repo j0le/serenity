@@ -37,6 +37,6 @@ private:
     bool m_use_other_color{false};
     bool m_mouse_went_down_in_widget{false};
 
-    void update_line_start_point(Gfx::IntPoint);
+    void update_line_end_point(Gfx::IntPoint);
 };
 }

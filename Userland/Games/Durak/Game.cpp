@@ -71,26 +71,27 @@ void Game::mousemove_event(GUI::MouseEvent& event)
     if (not m_mouse_went_down_in_widget)
         return;
 
-    update_line_start_point(event.position());
+    update_line_end_point(event.position());
 }
 
-void Game::update_line_start_point(Gfx::IntPoint point){
+void Game::update_line_end_point(Gfx::IntPoint new_point){
 
     int n = 0;
-    auto fn = [&](){
+    auto fn = [&](Gfx::IntPoint point){
         ++n;
         //dbgln("update_line_start_point: before {}. update.", n);
-        auto rect = Gfx::IntRect::from_two_points(m_line_start_point, m_line_end_point);
+        auto rect = Gfx::IntRect::from_two_points(m_line_start_point, point);
         rect.inflate(1,1,1,1);
         //dbgln("update_line_start_point: x: {}, y: {}, widht: {}, hight: {}.", rect.x(), rect.y(), rect.width(), rect.height());
         update(rect);
         //dbgln("update_line_start_point: after {}. update.", n);
     };
 
-    fn();
+    auto old_end_point = m_line_end_point;
+    m_line_end_point = new_point;
 
-    m_line_end_point = point;
-    fn();
+    fn(old_end_point);
+    fn(m_line_end_point);
 }
 
 }
