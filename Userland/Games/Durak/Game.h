@@ -32,5 +32,7 @@ private:
 
     Gfx::IntPoint m_mouse_position{0,0};
     static constexpr const Gfx::IntPoint m_line_start_point{100,100};
+
+    bool m_use_other_color{false};
 };
 }
