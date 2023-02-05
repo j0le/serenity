@@ -27,12 +27,16 @@ public:
 private:
     Game();
 
-    void paint_event(GUI::PaintEvent&) override;
-    void mousedown_event(GUI::MouseEvent& event) override;
+    virtual void paint_event(GUI::PaintEvent&) override;
+    virtual void mousedown_event(GUI::MouseEvent& event) override;
+    virtual void mousemove_event(GUI::MouseEvent& event) override;
 
-    Gfx::IntPoint m_mouse_position{0,0};
+    Gfx::IntPoint m_line_end_point{0,0};
     static constexpr const Gfx::IntPoint m_line_start_point{100,100};
 
     bool m_use_other_color{false};
+    bool m_mouse_went_down_in_widget{false};
+
+    void update_line_start_point(Gfx::IntPoint);
 };
 }
